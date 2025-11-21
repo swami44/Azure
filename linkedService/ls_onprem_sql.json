@@ -1,0 +1,21 @@
+{
+	"name": "ls_onprem_sql",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "INLAMYGJBXUZE79",
+			"database": "sample",
+			"encrypt": "mandatory",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "FREMONT\\swamiku",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3M2FiZTc0Zi1iMmY2LTQzMjUtYTEwOC1mYzllNzUxOWYwMTEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "selfHostedIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
