@@ -405,19 +405,51 @@
 								"partitionOption": "None"
 							},
 							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
 							},
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "actor_id",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "actor_id",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "name",
+											"type": "String",
+											"physicalType": "varchar"
+										},
+										"sink": {
+											"name": "name",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "birth_year",
+											"type": "Int32",
+											"physicalType": "int"
+										},
+										"sink": {
+											"name": "birth_year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
@@ -434,11 +466,9 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "ds_sink_csv_adls",
+								"referenceName": "ds_azure_sql_Sink_db",
 								"type": "DatasetReference",
-								"parameters": {
-									"fileName": "test"
-								}
+								"parameters": {}
 							}
 						]
 					}
@@ -450,7 +480,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_onpremsql')]",
-				"[concat(variables('factoryId'), '/datasets/ds_sink_csv_adls')]"
+				"[concat(variables('factoryId'), '/datasets/ds_azure_sql_Sink_db')]"
 			]
 		},
 		{
