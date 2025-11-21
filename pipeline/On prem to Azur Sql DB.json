@@ -21,9 +21,15 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
 					},
 					"enableStaging": false,
 					"translator": {
@@ -37,14 +43,17 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_onprem_sql",
+						"referenceName": "ds_onpremsql",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_Azure_sqlDB",
-						"type": "DatasetReference"
+						"referenceName": "ds_sink_csv_adls",
+						"type": "DatasetReference",
+						"parameters": {
+							"fileName": "test"
+						}
 					}
 				]
 			}

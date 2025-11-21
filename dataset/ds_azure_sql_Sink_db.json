@@ -1,0 +1,31 @@
+{
+	"name": "ds_azure_sql_Sink_db",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "actor_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "birth_year",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Actors"
+		}
+	}
+}
