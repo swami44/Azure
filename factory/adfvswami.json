@@ -1,0 +1,9 @@
+{
+	"name": "adfvswami",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "db790470-d2a7-4dcb-a91c-9d1a6ac745bd",
+		"tenantId": "c542e4a0-a6e7-4342-9b99-638e686bd5b5"
+	}
+}
