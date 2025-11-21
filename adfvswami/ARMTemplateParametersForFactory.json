@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfvswami"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"SqlServer1_password": {
+			"value": ""
+		},
+		"ls_azure_sql_DB_password": {
+			"value": ""
+		},
+		"targetazureblobsink_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://adlsstorageswami.dfs.core.windows.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "dbazureserver.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "db_Azure"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "Vkullay"
+		},
+		"SqlServer1_properties_typeProperties_server": {
+			"value": "INLAMYGJBXUZE79"
+		},
+		"SqlServer1_properties_typeProperties_database": {
+			"value": "sample"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "FREMONT\\swamiku"
+		},
+		"ls_azure_sql_DB_properties_typeProperties_server": {
+			"value": "dbazureserver.database.windows.net"
+		},
+		"ls_azure_sql_DB_properties_typeProperties_database": {
+			"value": "db_Azure"
+		},
+		"ls_azure_sql_DB_properties_typeProperties_userName": {
+			"value": "Vkullay"
+		}
+	}
+}
