@@ -44,7 +44,11 @@
 				"outputs": [
 					{
 						"referenceName": "ds_Azure_sqlDB",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"SchemaName": "dbo",
+							"TableName": "Actors"
+						}
 					}
 				]
 			}
