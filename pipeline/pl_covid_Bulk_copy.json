@@ -19,7 +19,7 @@
 						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
+							"recursive": false,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -114,10 +114,10 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "ds_sink_csv_adls",
+									"referenceName": "ds_covid_sink_adls",
 									"type": "DatasetReference",
 									"parameters": {
-										"fileName": {
+										"ds_sink_fileName": {
 											"value": "@item().sinkFileName",
 											"type": "Expression"
 										}
