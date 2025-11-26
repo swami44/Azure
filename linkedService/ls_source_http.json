@@ -4,9 +4,6 @@
 		"parameters": {
 			"ls_Base_URL": {
 				"type": "string"
-			},
-			"ls_relative_URL": {
-				"type": "string"
 			}
 		},
 		"annotations": [],
