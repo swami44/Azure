@@ -50,6 +50,9 @@
 		"ls_azure_sql_DB_properties_typeProperties_userName": {
 			"value": "Vkullay"
 		},
+		"ls_source_http_properties_typeProperties_url": {
+			"value": "@{linkedService().ls_Base_URL}"
+		},
 		"containerUri": {
 			"value": ""
 		},

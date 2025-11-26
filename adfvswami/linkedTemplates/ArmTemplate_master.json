@@ -67,6 +67,10 @@
 			"type": "string",
 			"defaultValue": "Vkullay"
 		},
+		"ls_source_http_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{linkedService().ls_Base_URL}"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -129,6 +133,9 @@
 					},
 					"ls_azure_sql_DB_properties_typeProperties_userName": {
 						"value": "[parameters('ls_azure_sql_DB_properties_typeProperties_userName')]"
+					},
+					"ls_source_http_properties_typeProperties_url": {
+						"value": "[parameters('ls_source_http_properties_typeProperties_url')]"
 					},
 					"SqlServer1_properties_typeProperties_server": {
 						"value": "[parameters('SqlServer1_properties_typeProperties_server')]"
