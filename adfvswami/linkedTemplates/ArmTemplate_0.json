@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
 		},
+		"ls_adls_sink_csv_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_sink_csv'"
+		},
 		"ls_azure_sql_DB_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_azure_sql_DB'"
@@ -42,6 +46,10 @@
 		"AzureSqlDatabase1_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "Vkullay"
+		},
+		"ls_adls_sink_csv_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsstorageswami.dfs.core.windows.net/"
 		},
 		"ls_azure_sql_DB_properties_typeProperties_server": {
 			"type": "string",
@@ -110,6 +118,23 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('AzureSqlDatabase1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_adls_sink_csv')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_adls_sink_csv_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_adls_sink_csv_accountKey')]"
 					}
 				}
 			},
@@ -230,7 +255,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "github_ecdc_file_list.json",
+						"fileName": "ecdc_file_list.json",
 						"folderPath": "Covid_source",
 						"container": "source"
 					}
@@ -285,6 +310,43 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/targetazureblobsink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_covid_sink_adls')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_adls_sink_csv",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"ds_sink_fileName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().ds_sink_fileName",
+							"type": "Expression"
+						},
+						"folderPath": "covid_upload",
+						"fileSystem": "target"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_adls_sink_csv')]"
 			]
 		},
 		{
@@ -449,7 +511,7 @@
 								"type": "JsonSource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
+									"recursive": false,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -545,10 +607,10 @@
 									],
 									"outputs": [
 										{
-											"referenceName": "ds_sink_csv_adls",
+											"referenceName": "ds_covid_sink_adls",
 											"type": "DatasetReference",
 											"parameters": {
-												"fileName": {
+												"ds_sink_fileName": {
 													"value": "@item().sinkFileName",
 													"type": "Expression"
 												}
@@ -568,7 +630,7 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_blob_source_json')]",
 				"[concat(variables('factoryId'), '/datasets/ds_source_csv_http')]",
-				"[concat(variables('factoryId'), '/datasets/ds_sink_csv_adls')]"
+				"[concat(variables('factoryId'), '/datasets/ds_covid_sink_adls')]"
 			]
 		},
 		{

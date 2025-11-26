@@ -14,6 +14,9 @@
 		"SqlServer1_password": {
 			"value": ""
 		},
+		"ls_adls_sink_csv_accountKey": {
+			"value": ""
+		},
 		"ls_azure_sql_DB_password": {
 			"value": ""
 		},
@@ -40,6 +43,9 @@
 		},
 		"SqlServer1_properties_typeProperties_userName": {
 			"value": "FREMONT\\swamiku"
+		},
+		"ls_adls_sink_csv_properties_typeProperties_url": {
+			"value": "https://adlsstorageswami.dfs.core.windows.net/"
 		},
 		"ls_azure_sql_DB_properties_typeProperties_server": {
 			"value": "dbazureserver.database.windows.net"

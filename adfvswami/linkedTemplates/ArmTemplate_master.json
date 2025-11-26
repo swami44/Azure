@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServer1'"
 		},
+		"ls_adls_sink_csv_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_sink_csv'"
+		},
 		"ls_azure_sql_DB_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_azure_sql_DB'"
@@ -54,6 +58,10 @@
 		"SqlServer1_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "FREMONT\\swamiku"
+		},
+		"ls_adls_sink_csv_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsstorageswami.dfs.core.windows.net/"
 		},
 		"ls_azure_sql_DB_properties_typeProperties_server": {
 			"type": "string",
@@ -104,6 +112,9 @@
 					"AzureSqlDatabase1_password": {
 						"value": "[parameters('AzureSqlDatabase1_password')]"
 					},
+					"ls_adls_sink_csv_accountKey": {
+						"value": "[parameters('ls_adls_sink_csv_accountKey')]"
+					},
 					"ls_azure_sql_DB_password": {
 						"value": "[parameters('ls_azure_sql_DB_password')]"
 					},
@@ -124,6 +135,9 @@
 					},
 					"AzureSqlDatabase1_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
+					},
+					"ls_adls_sink_csv_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_sink_csv_properties_typeProperties_url')]"
 					},
 					"ls_azure_sql_DB_properties_typeProperties_server": {
 						"value": "[parameters('ls_azure_sql_DB_properties_typeProperties_server')]"
