@@ -1,5 +1,6 @@
 {
 	"name": "ls_source_http",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"parameters": {
 			"ls_Base_URL": {
