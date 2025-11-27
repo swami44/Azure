@@ -20,6 +20,9 @@
 		"ls_azure_sql_DB_password": {
 			"value": ""
 		},
+		"ls_onprem_sql_password": {
+			"value": ""
+		},
 		"targetazureblobsink_connectionString": {
 			"value": ""
 		},
@@ -55,6 +58,15 @@
 		},
 		"ls_azure_sql_DB_properties_typeProperties_userName": {
 			"value": "Vkullay"
+		},
+		"ls_onprem_sql_properties_typeProperties_server": {
+			"value": "INLAMYGJBXUZE79"
+		},
+		"ls_onprem_sql_properties_typeProperties_database": {
+			"value": "sample"
+		},
+		"ls_onprem_sql_properties_typeProperties_userName": {
+			"value": "FREMONT\\swamiku"
 		},
 		"ls_source_http_properties_typeProperties_url": {
 			"value": "@{linkedService().ls_Base_URL}"

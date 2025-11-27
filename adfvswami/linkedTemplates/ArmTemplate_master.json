@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_azure_sql_DB'"
 		},
+		"ls_onprem_sql_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_onprem_sql'"
+		},
 		"targetazureblobsink_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'targetazureblobsink'"
@@ -74,6 +78,18 @@
 		"ls_azure_sql_DB_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "Vkullay"
+		},
+		"ls_onprem_sql_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "INLAMYGJBXUZE79"
+		},
+		"ls_onprem_sql_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sample"
+		},
+		"ls_onprem_sql_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "FREMONT\\swamiku"
 		},
 		"ls_source_http_properties_typeProperties_url": {
 			"type": "string",
@@ -124,6 +140,9 @@
 					"SqlServer1_password": {
 						"value": "[parameters('SqlServer1_password')]"
 					},
+					"ls_onprem_sql_password": {
+						"value": "[parameters('ls_onprem_sql_password')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -159,10 +178,39 @@
 					},
 					"SqlServer1_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServer1_properties_typeProperties_userName')]"
+					},
+					"ls_onprem_sql_properties_typeProperties_server": {
+						"value": "[parameters('ls_onprem_sql_properties_typeProperties_server')]"
+					},
+					"ls_onprem_sql_properties_typeProperties_database": {
+						"value": "[parameters('ls_onprem_sql_properties_typeProperties_database')]"
+					},
+					"ls_onprem_sql_properties_typeProperties_userName": {
+						"value": "[parameters('ls_onprem_sql_properties_typeProperties_userName')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "adfvswami_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfvswami_ArmTemplate_0')]"
+			]
 		}
 	]
 }

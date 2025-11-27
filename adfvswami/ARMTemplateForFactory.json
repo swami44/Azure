@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_azure_sql_DB'"
 		},
+		"ls_onprem_sql_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_onprem_sql'"
+		},
 		"targetazureblobsink_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'targetazureblobsink'"
@@ -74,6 +78,18 @@
 		"ls_azure_sql_DB_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "Vkullay"
+		},
+		"ls_onprem_sql_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "INLAMYGJBXUZE79"
+		},
+		"ls_onprem_sql_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sample"
+		},
+		"ls_onprem_sql_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "FREMONT\\swamiku"
 		},
 		"ls_source_http_properties_typeProperties_url": {
 			"type": "string",
@@ -180,7 +196,8 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2025-11-21T10:30:03Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_onpremsql')]",
@@ -463,7 +480,8 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2025-11-26T17:07:00Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_blob_source_json')]",
@@ -891,6 +909,34 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_onprem_sql')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('ls_onprem_sql_properties_typeProperties_server')]",
+					"database": "[parameters('ls_onprem_sql_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": true,
+					"authenticationType": "SQL",
+					"userName": "[parameters('ls_onprem_sql_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('ls_onprem_sql_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "selfHostedIR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/selfHostedIR')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ls_source_http')]",
