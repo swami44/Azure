@@ -99,6 +99,12 @@
 					"transformations": [
 						{
 							"name": "split1"
+						},
+						{
+							"name": "AddColumn"
+						},
+						{
+							"name": "derivedColumn1"
 						}
 					],
 					"scriptLines": [
@@ -113,7 +119,9 @@
 						"     ignoreNoFilesFound: false) ~> SalesIND",
 						"SalesIND split(isNull(toDate(saleDate,'dd-MMM-YYYY')),",
 						"     disjoint: false) ~> split1@(BadRows, GoodRows)",
-						"split1@BadRows sink(allowSchemaDrift: true,",
+						"split1@BadRows derive(NewColumn = 'TestNewColumn_BadRows') ~> AddColumn",
+						"split1@GoodRows derive(NewColumn = 'GoodRows') ~> derivedColumn1",
+						"AddColumn sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     deletable:false,",
 						"     insertable:true,",
@@ -123,7 +131,7 @@
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
-						"split1@GoodRows sink(allowSchemaDrift: true,",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     deletable:false,",
 						"     insertable:true,",
