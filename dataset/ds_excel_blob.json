@@ -1,0 +1,38 @@
+{
+	"name": "ds_excel_blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "targetazureblobsink",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "wrong_format_data.xlsx",
+				"container": "source"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "saleDate",
+				"type": "String"
+			},
+			{
+				"name": "salesItem",
+				"type": "String"
+			},
+			{
+				"name": "country",
+				"type": "String"
+			},
+			{
+				"name": "qunatity",
+				"type": "String"
+			}
+		]
+	}
+}
