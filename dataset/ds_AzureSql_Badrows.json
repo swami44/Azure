@@ -1,0 +1,16 @@
+{
+	"name": "ds_AzureSql_Badrows",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_DB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Badrows"
+		}
+	}
+}
